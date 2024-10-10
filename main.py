@@ -2,7 +2,7 @@ import qrcode
 from tkinter import *
 from tkinter import messagebox
 from tkinter import filedialog
-from PIL import Image, ImageTk, ImageDraw, ImageFont  # นำเข้า ImageFont
+from PIL import Image, ImageTk, ImageDraw, ImageFont
 
 def generate_qr():
     data = entry.get()
@@ -35,8 +35,7 @@ def generate_qr():
 
                 # เพิ่มข้อความด้านล่าง
                 draw = ImageDraw.Draw(new_img)
-
-                # กำหนดฟอนต์และขนาดที่ต้องการ
+                
                 font_size = 30
                 font = ImageFont.truetype("arial.ttf", font_size)
 
@@ -65,12 +64,12 @@ def generate_qr():
 
 def on_click(event, entry, placeholder):
     if entry.get() == placeholder:
-        entry.delete(0, "end")  # ลบ placeholder เมื่อคลิก
+        entry.delete(0, "end")  # ลบ placeholder ตอนเราคลิก
         entry.config(fg='black')
 
 
 def on_focusout(event, entry, placeholder):
-    if entry.get() == "":  # ถ้าไม่มีข้อความในช่อง ให้แสดง placeholder กลับมา
+    if entry.get() == "":  # ถ้าไม่ได้พิมพ์อะไรให้เอา placeholder กลับมา
         entry.insert(0, placeholder)
         entry.config(fg='grey')
 
@@ -108,16 +107,16 @@ label.grid(row=1, column=0, columnspan=2)
 entry = Entry(frame, width=40, font=("Arial", 12))
 entry.insert(0, "Enter link or text")  # Placeholder
 entry.config(fg='grey')
-entry.bind("<FocusIn>", lambda e: on_click(e, entry, "Enter link or text"))  # เมื่อคลิกที่ช่อง input
-entry.bind("<FocusOut>", lambda e: on_focusout(e, entry, "Enter link or text"))  # เมื่อออกจากช่อง input
+entry.bind("<FocusIn>", lambda e: on_click(e, entry, "Enter link or text"))  # ตอนคลิกที่ช่อง input
+entry.bind("<FocusOut>", lambda e: on_focusout(e, entry, "Enter link or text"))  # ตอนออกจากช่อง input
 entry.grid(row=2, column=0, padx=5, pady=(10, 0))
 
 # ช่อง Input ที่สอง
 extra_input = Entry(frame, width=40, font=("Arial", 12))
 extra_input.insert(0, "เพิ่มข้อความด้านล่าง QR Code")
 extra_input.config(fg='grey')
-extra_input.bind("<FocusIn>", lambda e: on_click(e, extra_input, "เพิ่มข้อความด้านล่าง QR Code"))  # เมื่อคลิกที่ช่อง input
-extra_input.bind("<FocusOut>", lambda e: on_focusout(e, extra_input, "เพิ่มข้อความด้านล่าง QR Code"))  # เมื่อออกจากช่อง input
+extra_input.bind("<FocusIn>", lambda e: on_click(e, extra_input, "เพิ่มข้อความด้านล่าง QR Code"))  # ตอนคลิกที่ช่อง input
+extra_input.bind("<FocusOut>", lambda e: on_focusout(e, extra_input, "เพิ่มข้อความด้านล่าง QR Code"))  # ตอนออกจากช่อง input
 
 # ตัวเลือกประเภท QR code
 option = StringVar()
